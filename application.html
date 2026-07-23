@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17365f">
+  <title>Employment Application | Magic Mobile Car Wash</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chicle&display=swap" rel="stylesheet">
+  <style>
+:root { --navy:#17365f; --navy-dark:#102a4c; --red:#ef2b2d; --white:#fff; --light:#f4f7fb; --text:#17263a; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-width:320px; background:var(--light); color:var(--text); font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+    .topbar { background:var(--navy-dark); color:#fff; padding:12px 20px; text-align:center; font-weight:700; }
+    .page { width:min(100% - 28px, 820px); margin:32px auto; }
+    .back, .submit { width:220px; font-family:inherit; min-height:52px; display:inline-flex; align-items:center; justify-content:center; border-radius:12px; padding:13px 20px; font-size:17px; font-weight:900; text-align:center; text-decoration:none; }
+    .back { margin-bottom:18px; border:2px solid var(--navy); background:#fff; color:var(--navy); }
+    .back:hover { background:#edf3fa; }
+    .card { background:#fff; border-radius:20px; box-shadow:0 14px 40px rgba(16,42,76,.14); overflow:hidden; }
+    .hero { padding:32px; background:linear-gradient(135deg,var(--navy),var(--navy-dark)); color:#fff; }
+    .hero h1 { font-family:'Chicle', cursive; margin:0 0 8px; font-size:clamp(30px,5vw,46px); }
+    .hero p { margin:0; font-size:18px; }
+    form { padding:30px; }
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .full { grid-column:1 / -1; }
+    label { display:block; margin-bottom:7px; font-weight:800; color:var(--navy); }
+    .required { color:var(--red); margin-left:3px; }
+    input, select, textarea { width:100%; border:1px solid #c8d2df; border-radius:10px; padding:13px 14px; font:inherit; color:var(--text); background:#fff; }
+    input, select { height:50px; }
+    input:focus, select:focus, textarea:focus { outline:3px solid rgba(23,54,95,.16); border-color:var(--navy); }
+    :where(a[href], button, input:not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])):focus-visible { outline:3px solid #ffd76a; outline-offset:3px; }
+    form.show-errors [required].field-invalid,
+    form.show-errors [required].field-invalid:focus {
+      border: 2px solid rgba(239,43,45,.88) !important;
+      outline: 3px solid rgba(239,43,45,.16) !important;
+      box-shadow: 0 0 0 1px rgba(239,43,45,.06);
+    }
+    form.show-errors [required]:not(.field-invalid):focus {
+      border-color: var(--navy);
+      outline: 3px solid rgba(23,54,95,.16);
+    }
+    textarea { min-height:120px; resize:vertical; }
+    .phone-row { display:grid; grid-template-columns:78px minmax(0,1fr); gap:10px; }
+    .country-code { text-align:center; }
+    @media (max-width:380px) { .phone-row { grid-template-columns:70px minmax(0,1fr); } }
+    .resume-box { border:2px dashed #aebdce; border-radius:14px; padding:18px; background:#f9fbfd; }
+    .resume-option { display:flex; align-items:flex-start; gap:10px; margin:0; color:var(--navy); cursor:pointer; }
+    .resume-option input { width:20px; height:20px; margin:2px 0 0; flex:0 0 auto; }
+    .resume-box small { display:block; margin:8px 0 0 30px; color:#536579; }
+    .submit { margin-top:24px; border:0; background:var(--red); color:#fff; cursor:pointer; }
+    .submit:hover { filter:brightness(.94); }
+    .notice { display:none; margin-top:16px; padding:13px; border-radius:10px; background:#fff4d9; color:#664b00; font-weight:700; text-align:center; }
+    @media (max-width:640px) { .grid { grid-template-columns:1fr; } .full { grid-column:auto; } .hero, form { padding:22px; } .back, .submit { width:100%; } }
+  
+
+    
+    html { -webkit-text-size-adjust: 100%; }
+    body { min-width: 0; min-height: 100dvh; overflow-x: hidden; }
+    .topbar { padding-left: max(14px, env(safe-area-inset-left)); padding-right: max(14px, env(safe-area-inset-right)); }
+    .page { width: min(calc(100% - 28px), 820px); margin-top: clamp(18px, 5vw, 34px); margin-bottom: max(28px, env(safe-area-inset-bottom)); }
+    .card, .hero, form, .grid, .grid > div { min-width: 0; }
+    input, select, textarea, button { font-size: 16px; }
+    select { appearance: auto; }
+    .back, .submit { min-height: 52px; touch-action: manipulation; }
+    input[type="file"] { height: auto; min-height: 50px; padding: 10px; }
+
+    @media (max-width: 760px) {
+      .page { width: min(calc(100% - 24px), 820px); }
+      .hero { padding: 26px 22px; }
+      form { padding: 24px 20px; }
+      .grid { gap: 16px; }
+    }
+
+    @media (max-width: 640px) {
+      .topbar { font-size: 14px; line-height: 1.35; }
+      .page { width: min(calc(100% - 20px), 820px); margin-top: 14px; }
+      .hero, form { padding: 20px 16px; }
+      .hero h1 { font-size: clamp(30px, 10vw, 42px); }
+      .hero p { font-size: 16px; line-height: 1.45; }
+      .grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+      .full { grid-column: auto; }
+      .back, .submit { width: 100%; }
+      textarea { min-height: 140px; }
+      .resume-box { padding: 14px; }
+    }
+
+    @media (max-width: 380px) {
+      .page { width: calc(100% - 14px); }
+      .hero, form { padding-left: 13px; padding-right: 13px; }
+      label { font-size: 14px; }
+      input, select, textarea { padding-left: 11px; padding-right: 11px; }
+    }
+
+  
+
+    .translate-panel {
+      width:min(calc(100% - 28px), 820px);
+      margin:18px auto 0;
+      padding:14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      border-radius:14px;
+      background:#fff;
+      box-shadow:0 8px 24px rgba(16,42,76,.10);
+    }
+    .translate-left, .translate-controls {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+    .translate-panel .back {
+      width:auto;
+      min-height:48px;
+      margin:0;
+      padding:11px 18px;
+      border-radius:10px;
+      font-size:16px;
+    }
+    .translate-panel label { margin:0; white-space:nowrap; font-family:inherit; }
+    .translate-panel select { width:min(100%, 260px); height:48px; font-family:inherit; }
+    .translate-action {
+      min-height:48px;
+      padding:11px 18px;
+      border:0;
+      border-radius:10px;
+      background:var(--navy);
+      color:#fff;
+      font:inherit;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .translate-action:hover { filter:brightness(.94); }
+    @media (max-width:640px) {
+      .translate-panel {
+        width:min(calc(100% - 20px), 820px);
+        align-items:stretch;
+        flex-direction:column;
+      }
+      .translate-left, .translate-controls { width:100%; }
+      .translate-controls { flex-direction:column; align-items:stretch; }
+      .translate-panel .back, .translate-panel select, .translate-action { width:100%; max-width:none; }
+    }
+
+    
+    #google_translate_element {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .goog-tooltip,
+    .goog-tooltip:hover,
+    .goog-te-balloon-frame,
+    iframe.goog-te-balloon-frame {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+    .goog-text-highlight {
+      background: transparent !important;
+      box-shadow: none !important;
+      border: 0 !important;
+    }
+</style>
+</head>
+<body>
+  <div id="google_translate_element" aria-hidden="true"></div>
+  <div class="topbar">Magic Mobile Car Wash — Employment Application</div>
+  <div class="translate-panel" aria-label="Page navigation and translation controls">
+    <div class="translate-left">
+      <a class="back" href="index.html">← Back to website</a>
+    </div>
+    <div class="translate-controls">
+      <label for="application-language">Language</label>
+      <select id="application-language" aria-label="Choose a language">
+      <option value="en">English</option>
+      <option value="ar">Arabic</option>
+      <option value="zh-CN">Chinese (Simplified)</option>
+      <option value="zh-TW">Chinese (Traditional)</option>
+      <option value="fr">French</option>
+      <option value="de">German</option>
+      <option value="ht">Haitian Creole</option>
+      <option value="hi">Hindi</option>
+      <option value="it">Italian</option>
+      <option value="ja">Japanese</option>
+      <option value="ko">Korean</option>
+      <option value="pl">Polish</option>
+      <option value="pt">Portuguese</option>
+      <option value="ru">Russian</option>
+      <option value="es">Spanish</option>
+      <option value="ur">Urdu</option>
+      <option value="vi">Vietnamese</option>
+      </select>
+      <button class="translate-action" id="application-translate-button" type="button">Translate</button>
+    </div>
+  </div>
+  <main class="page">
+    <section class="card">
+      <div class="hero">
+        <h1>Now Hiring</h1>
+        <p>Flexible Hours, Full Time / Part-Time</p>
+      </div>
+      <form id="application-form" enctype="multipart/form-data" autocomplete="on" novalidate>
+        <div class="grid">
+          <div><label for="first-name">First name<span class="required" aria-hidden="true">*</span></label><input id="first-name" name="first_name" autocomplete="given-name" required></div>
+          <div><label for="last-name">Last name<span class="required" aria-hidden="true">*</span></label><input id="last-name" name="last_name" autocomplete="family-name" required></div>
+          <div><label for="email">Email<span class="required" aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" required></div>
+          <div><label for="phone">Phone<span class="required" aria-hidden="true">*</span></label><div class="phone-row"><input id="country-code" class="country-code" name="country_code" type="text" inputmode="numeric" autocomplete="off" value="+1" aria-label="Country code" maxlength="4"><input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(000) 000-0000" maxlength="14" required><input id="full-phone" name="full_phone" type="hidden"></div></div>
+          <div><label for="zip-code">ZIP Code<span class="required" aria-hidden="true">*</span></label><input id="zip-code" name="zip_code" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}( - [0-9]{4})?" maxlength="12" required></div>
+          <div><label for="schedule">Availability<span class="required" aria-hidden="true">*</span></label><select id="schedule" name="schedule" autocomplete="on" required><option value="">Select one</option><option value="full-time">Full time</option><option value="part-time">Part time</option><option value="either">Either</option></select></div>
+          <div class="full"><label for="experience">Work experience or message</label><textarea id="experience" name="experience" autocomplete="on" placeholder="Tell us about your experience and availability."></textarea></div>
+          <div class="full resume-box">
+            <label class="resume-option" for="has-resume"><input id="has-resume" name="has_resume" type="checkbox"> <span>I have a résumé to attach</span></label>
+            <small>If you have a résumé, attach it in your email before sending your application.</small>
+          </div>
+        </div>
+        <button class="submit" type="submit">Submit by Email</button>
+      </form>
+    </section>
+  </main>
+  <script>
+const form = document.getElementById('application-form');
+    const email = document.getElementById('email');
+    const countryCode = document.getElementById('country-code');
+    const phone = document.getElementById('phone');
+    const fullPhone = document.getElementById('full-phone');
+    const zipCode = document.getElementById('zip-code');
+    const requiredFields = Array.from(form.querySelectorAll('[required]'));
+
+    function digitsOnly(value, maxLength) {
+      return value.replace(/\D/g, '').slice(0, maxLength);
+    }
+
+    function formatPhone(value) {
+      const digits = digitsOnly(value, 10);
+      if (digits.length <= 3) return digits ? `(${digits}` : '';
+      if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+      return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+    }
+
+    countryCode.addEventListener('input', function () {
+      const digits = digitsOnly(countryCode.value, 3);
+      countryCode.value = digits ? `+${digits}` : '';
+      countryCode.setCustomValidity(
+        !countryCode.value || /^\+\d{1,3}$/.test(countryCode.value)
+          ? ''
+          : 'Please enter a valid country code'
+      );
+    });
+
+    phone.addEventListener('input', function () {
+      const allNumbers = phone.value.replace(/\D/g, '').slice(0, 13);
+
+      if (allNumbers.length > 10) {
+        const countryNumbers = allNumbers.slice(0, -10).slice(0, 3);
+        const localNumbers = allNumbers.slice(-10);
+        countryCode.value = `+${countryNumbers}`;
+        phone.value = formatPhone(localNumbers);
+      } else {
+        countryCode.value = '+1';
+        phone.value = formatPhone(allNumbers);
+      }
+
+      phone.setCustomValidity(
+        phone.value.replace(/\D/g, '').length === 10
+          ? ''
+          : 'Please enter a 10-number phone number'
+      );
+    });
+
+    function formatZipCode(value) {
+      const digits = digitsOnly(value, 9);
+      if (digits.length <= 5) return digits;
+      return `${digits.slice(0, 5)} - ${digits.slice(5)}`;
+    }
+
+    zipCode.addEventListener('input', function () {
+      zipCode.value = formatZipCode(zipCode.value);
+      const zipDigits = zipCode.value.replace(/\D/g, '').length;
+      zipCode.setCustomValidity(zipDigits === 5 || zipDigits === 9 ? '' : 'Please enter a 5-digit ZIP code or add the optional 4-digit extension');
+    });
+
+    function setEmailMessage() {
+      email.setCustomValidity('');
+      if (!email.value.trim() || !email.validity.valid) {
+        email.setCustomValidity('Please enter valid email');
+      }
+    }
+
+    function validateField(field) {
+      if (field === email) setEmailMessage();
+      const invalid = !field.checkValidity();
+      field.classList.toggle('field-invalid', invalid);
+      field.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+      return !invalid;
+    }
+
+    function validateAllFields() {
+      return requiredFields.map(validateField).every(Boolean);
+    }
+
+    requiredFields.forEach(function (field) {
+      const eventName = field.tagName === 'SELECT' ? 'change' : 'input';
+      field.addEventListener(eventName, function () {
+        if (form.classList.contains('show-errors')) validateField(field);
+      });
+      field.addEventListener('blur', function () {
+        if (form.classList.contains('show-errors')) validateField(field);
+      });
+    });
+
+    form.addEventListener('submit', async function (event) {
+      event.preventDefault();
+      form.classList.add('show-errors');
+
+      fullPhone.value = countryCode.value
+        ? `${countryCode.value} ${phone.value}`
+        : phone.value;
+
+      if (phone.value.replace(/\D/g, '').length !== 10) {
+        phone.setCustomValidity('Please enter a 10-digit phone number');
+      } else {
+        phone.setCustomValidity('');
+      }
+
+      const zipDigits = zipCode.value.replace(/\D/g, '').length;
+      if (zipDigits !== 5 && zipDigits !== 9) {
+        zipCode.setCustomValidity('Please enter a 5-digit ZIP code or add the optional 4-digit extension');
+      } else {
+        zipCode.setCustomValidity('');
+      }
+
+      if (countryCode.value && !/^\+\d{1,3}$/.test(countryCode.value)) {
+        countryCode.setCustomValidity('Please enter a valid country code');
+      } else {
+        countryCode.setCustomValidity('');
+      }
+
+      const allValid = validateAllFields();
+      if (!allValid) {
+        const firstInvalid = requiredFields.find(function (field) {
+          return field.classList.contains('field-invalid');
+        });
+
+        if (firstInvalid) {
+          firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          window.setTimeout(function () {
+            firstInvalid.focus({ preventScroll: true });
+            if (typeof firstInvalid.select === 'function' && firstInvalid.tagName !== 'SELECT') {
+              firstInvalid.select();
+            }
+          }, 450);
+        }
+        return;
+      }
+
+      const scheduleEnglishLabels = {
+        'full-time': 'Full time',
+        'part-time': 'Part time',
+        'either': 'Either'
+      };
+      const selectedSchedule = document.getElementById('schedule').value;
+      const scheduleInEnglish = scheduleEnglishLabels[selectedSchedule] || 'Not provided';
+
+      const subject = `Employment Application - ${document.getElementById('first-name').value.trim()} ${document.getElementById('last-name').value.trim()}`;
+      const body = [
+        'Employment Application',
+        '',
+        `First name: ${document.getElementById('first-name').value.trim()}`,
+        `Last name: ${document.getElementById('last-name').value.trim()}`,
+        `Email: ${email.value.trim()}`,
+        `Phone: ${fullPhone.value}`,
+        `ZIP Code: ${zipCode.value.trim()}`,
+        `Availability: ${scheduleInEnglish}`,
+        '',
+        'Work experience or message:',
+        document.getElementById('experience').value.trim() || 'Not provided'
+      ].join('\n');
+
+      const hasResume = document.getElementById('has-resume').checked;
+      const finalBody = hasResume
+        ? `${body}\n\nRésumé: Applicant indicated they have a résumé and should attach it to this email.`
+        : body;
+
+      if (hasResume) {
+        window.alert(getResumeAttachmentMessage());
+      }
+
+      form.reset();
+      form.classList.remove('show-errors');
+      requiredFields.forEach(function (field) {
+        field.classList.remove('field-invalid');
+        field.removeAttribute('aria-invalid');
+      });
+
+      window.location.href = `mailto:kiaradwilliams04@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(finalBody)}`;
+    });
+
+const LANGUAGE_STORAGE_KEY = 'magicMobileLanguage';
+    const APPLICATION_LANGUAGES = [
+      'ar', 'zh-CN', 'zh-TW', 'fr', 'de', 'ht', 'hi', 'it',
+      'ja', 'ko', 'pl', 'pt', 'ru', 'es', 'ur', 'vi'
+    ];
+
+    const RESUME_ATTACHMENT_MESSAGES = {
+      en: 'Please attach your résumé to the email before sending.',
+      ar: 'يرجى إرفاق سيرتك الذاتية بالبريد الإلكتروني قبل الإرسال.',
+      'zh-CN': '请在发送前将您的简历附加到电子邮件中。',
+      'zh-TW': '請在傳送前將您的履歷附加到電子郵件中。',
+      fr: 'Veuillez joindre votre CV à l’e-mail avant de l’envoyer.',
+      de: 'Bitte fügen Sie Ihren Lebenslauf vor dem Senden der E-Mail als Anhang hinzu.',
+      ht: 'Tanpri tache rezime w nan imèl la anvan ou voye li.',
+      hi: 'कृपया भेजने से पहले अपना रिज़्यूमे ईमेल में संलग्न करें।',
+      it: 'Allega il tuo curriculum all’e-mail prima di inviarla.',
+      ja: '送信する前に、履歴書をメールに添付してください。',
+      ko: '보내기 전에 이력서를 이메일에 첨부해 주세요.',
+      pl: 'Przed wysłaniem dołącz swoje CV do wiadomości e-mail.',
+      pt: 'Anexe seu currículo ao e-mail antes de enviá-lo.',
+      ru: 'Пожалуйста, прикрепите резюме к письму перед отправкой.',
+      es: 'Adjunte su currículum al correo electrónico antes de enviarlo.',
+      ur: 'براہِ کرم ای میل بھیجنے سے پہلے اپنا ریزیومے منسلک کریں۔',
+      vi: 'Vui lòng đính kèm sơ yếu lý lịch vào email trước khi gửi.'
+    };
+
+    function getResumeAttachmentMessage() {
+      const selectedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY)
+        || getTranslateCookieLanguage()
+        || 'en';
+      return RESUME_ATTACHMENT_MESSAGES[selectedLanguage]
+        || RESUME_ATTACHMENT_MESSAGES.en;
+    }
+
+    function getTranslateCookieLanguage() {
+      const match = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/([^;]+)/);
+      return match ? decodeURIComponent(match[1]) : 'en';
+    }
+
+    function setTranslateCookie(language) {
+      const value = '/en/' + language;
+      document.cookie = 'googtrans=' + value + '; path=/; SameSite=Lax';
+      if (location.hostname) {
+        document.cookie = 'googtrans=' + value + '; path=/; domain=' + location.hostname + '; SameSite=Lax';
+      }
+    }
+
+    function clearTranslateCookies() {
+      const expires = 'Thu, 01 Jan 1970 00:00:00 GMT';
+      const hostParts = location.hostname ? location.hostname.split('.') : [];
+      const domains = ['', location.hostname];
+      if (hostParts.length > 1) domains.push('.' + hostParts.slice(-2).join('.'));
+
+      [...new Set(domains)].forEach(function (domain) {
+        const domainPart = domain ? '; domain=' + domain : '';
+        document.cookie = 'googtrans=; expires=' + expires + '; path=/' + domainPart;
+        document.cookie = 'googtrans=; Max-Age=0; path=/' + domainPart;
+      });
+    }
+
+    (function restoreSavedLanguageBeforeGoogleLoads() {
+      const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY) || 'en';
+      const cookieLanguage = getTranslateCookieLanguage();
+
+      if (savedLanguage === 'en') {
+        if (cookieLanguage !== 'en') clearTranslateCookies();
+        return;
+      }
+
+      if (APPLICATION_LANGUAGES.includes(savedLanguage) && cookieLanguage !== savedLanguage) {
+        setTranslateCookie(savedLanguage);
+      }
+    }());
+
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: APPLICATION_LANGUAGES.join(','),
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+
+    const applicationLanguage = document.getElementById('application-language');
+    const applicationTranslateButton = document.getElementById('application-translate-button');
+
+    applicationLanguage.value = localStorage.getItem(LANGUAGE_STORAGE_KEY) || getTranslateCookieLanguage();
+
+    applicationTranslateButton.addEventListener('click', function () {
+      const language = applicationLanguage.value;
+
+      if (language === 'en') {
+        localStorage.removeItem(LANGUAGE_STORAGE_KEY);
+        clearTranslateCookies();
+        location.reload();
+        return;
+      }
+
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+      setTranslateCookie(language);
+
+      location.reload();
+    });
+
+    (function preserveLanguageForLocalNavigation() {
+      function currentLanguage() {
+        const googleSelect = document.querySelector('.goog-te-combo');
+        if (googleSelect) return googleSelect.value || 'en';
+        return localStorage.getItem(LANGUAGE_STORAGE_KEY)
+          || getTranslateCookieLanguage()
+          || 'en';
+      }
+
+      function syncLanguage() {
+        const language = currentLanguage();
+        if (language && language !== 'en') {
+          localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+          setTranslateCookie(language);
+        } else {
+          localStorage.removeItem(LANGUAGE_STORAGE_KEY);
+          clearTranslateCookies();
+        }
+      }
+
+      document.addEventListener('click', function (event) {
+        const link = event.target.closest('a[href]');
+        if (!link || link.target || link.hasAttribute('download')) return;
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:') || href.startsWith('sms:')) return;
+
+        try {
+          const url = new URL(href, location.href);
+          if (url.origin === location.origin) syncLanguage();
+        } catch (_) {}
+      }, true);
+    }());
+
+    (function enableEnterForKeyboardControls() {
+      document.addEventListener('keydown', function (event) {
+        if (event.key !== 'Enter' || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+        const target = event.target;
+        if (!(target instanceof HTMLElement) || target.matches('[data-human-check]')) return;
+
+        if (target.matches('input[type="checkbox"], input[type="radio"]')) {
+          event.preventDefault();
+          target.click();
+        }
+      });
+    }());
+
+    const removeGoogleFeedbackPopup = function () {
+      document.querySelectorAll('.goog-tooltip, .goog-te-balloon-frame, iframe.goog-te-balloon-frame').forEach(function (element) {
+        element.remove();
+      });
+    };
+
+    removeGoogleFeedbackPopup();
+    new MutationObserver(removeGoogleFeedbackPopup).observe(document.documentElement, {
+      childList: true,
+      subtree: true
+    });
+</script>
+
+  
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+
+</body>
+</html>
