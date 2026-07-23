@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#17365f" name="theme-color"/>
+<title>Magic Mobile Car Wash Gallery</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Chicle&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#17365f;--navy-dark:#102a4c;--red:#ef2b2d;--white:#fff;--focus:#ffd76a}
+*{box-sizing:border-box}
+html{min-height:100%;background:#f4f7fb}
+body{margin:0;min-width:320px;min-height:100vh;background:#f4f7fb;color:var(--navy);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.gallery-page{width:min(100%,1240px);margin:0 auto;padding:28px 20px 56px}
+.gallery-top{margin-bottom:24px}
+.back-home{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 15px;border:1px solid rgba(23,54,95,.18);border-radius:999px;background:#fff;font-size:13px;font-weight:850;box-shadow:0 5px 15px rgba(16,42,76,.08)}
+h1{margin:0;font-family:"Chicle",cursive;font-size:clamp(38px,4vw,52px);font-weight:400;line-height:1;text-align:right;white-space:nowrap}
+.gallery-filters{display:flex;min-width:0;flex-wrap:wrap;justify-content:flex-start;gap:9px;margin:0}
+.gallery-filter{min-height:42px;padding:10px 15px;border:1px solid rgba(23,54,95,.18);border-radius:999px;background:#fff;color:var(--navy);font:inherit;font-size:13px;font-weight:850;cursor:pointer;transition:.16s ease}
+.gallery-filter:hover,.gallery-filter.is-active{border-color:var(--navy);background:var(--navy);color:#fff}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.gallery-item{display:block;width:100%;aspect-ratio:4/3;padding:0;overflow:hidden;border:0;border-radius:18px;background:#dfe7f0;box-shadow:0 12px 28px rgba(16,42,76,.12);cursor:zoom-in}
+.gallery-item:focus-visible,.gallery-filter:focus-visible,:where(a[href],button,select,input:not([type="hidden"]),textarea,[tabindex]:not([tabindex="-1"])):focus-visible{outline:3px solid #ffd76a;outline-offset:3px}
+
+.gallery-item[hidden]{display:none}
+.gallery-item img{width:100%;height:100%;display:block;object-fit:cover}
+
+.lightbox{position:fixed;inset:0;z-index:1000;display:none;place-items:center;padding:24px;background:rgba(4,9,18,.9);backdrop-filter:blur(5px)}
+.lightbox.is-open{display:grid}
+.lightbox img{max-width:min(96vw,1280px);max-height:88vh;display:block;object-fit:contain;border-radius:16px;background:#fff;box-shadow:0 28px 80px rgba(0,0,0,.5)}
+.lightbox-close{position:fixed;top:18px;right:20px;width:48px;height:48px;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:rgba(23,54,95,.95);color:#fff;font-size:31px;line-height:1;cursor:pointer}.lightbox-nav{position:fixed;top:50%;z-index:2;width:52px;height:52px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:rgba(23,54,95,.92);color:#fff;font-size:34px;line-height:1;cursor:pointer;transform:translateY(-50%);transition:background .16s ease,transform .16s ease}.lightbox-nav:hover{background:var(--navy)}.lightbox-prev{left:20px}.lightbox-next{right:20px}.lightbox-counter{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);padding:7px 12px;border-radius:999px;background:rgba(23,54,95,.9);color:#fff;font-size:13px;font-weight:800;letter-spacing:.02em}.lightbox img{touch-action:pan-y;user-select:none;-webkit-user-drag:none}@media(max-width:640px){.lightbox{padding:18px 10px}.lightbox-nav{width:44px;height:44px;font-size:29px;top:auto;bottom:16px;transform:none}.lightbox-nav:hover{background:var(--navy)}.lightbox-prev{left:16px}.lightbox-next{right:16px}.lightbox-counter{bottom:20px}.lightbox-close{top:12px;right:12px;width:44px;height:44px}}
+@media(max-width:980px){.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.gallery-page{padding:18px 12px 34px}.gallery-filters{width:100%;justify-content:flex-start}.gallery-grid{grid-template-columns:1fr;gap:13px}.gallery-filter{font-size:12px;padding-inline:12px}}
+
+.page-toolbar {
+  width:min(calc(100% - 40px), 1240px);
+  margin:18px auto 0;
+  padding:14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  border-radius:14px;
+  background:#fff;
+  box-shadow:0 8px 24px rgba(16,42,76,.10);
+}
+.toolbar-left {
+  display:flex;
+  align-items:center;
+  gap:16px;
+  min-width:0;
+}
+.toolbar-left h1 {
+  text-align:left;
+}
+.translate-panel {
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:10px;
+  margin-left:auto;
+}
+.translate-panel label { margin:0; white-space:nowrap; font-weight:800; }
+.translate-panel select {
+  width:min(100%, 260px);
+  height:48px;
+  border:1px solid rgba(23,54,95,.22);
+  border-radius:10px;
+  padding:10px 12px;
+  background:#fff;
+  color:var(--navy);
+  font:inherit;
+  font-size:16px;
+}
+.translate-action {
+  min-height:48px;
+  padding:11px 18px;
+  border:0;
+  border-radius:10px;
+  background:var(--navy);
+  color:#fff;
+  font:inherit;
+  font-weight:900;
+  cursor:pointer;
+}
+.translate-action:hover { filter:brightness(.94); }
+@media (max-width:760px) {
+  .page-toolbar {
+    width:min(calc(100% - 24px), 1240px);
+    align-items:stretch;
+    flex-direction:column;
+  }
+  .toolbar-left {
+    justify-content:flex-start;
+    flex-wrap:wrap;
+  }
+  .translate-panel {
+    width:100%;
+    margin-left:0;
+  }
+}
+@media (max-width:520px) {
+  .toolbar-left {
+    align-items:flex-start;
+    flex-direction:column;
+    gap:10px;
+  }
+  .translate-panel {
+    align-items:stretch;
+    flex-direction:column;
+  }
+  .translate-panel select, .translate-action { width:100%; max-width:none; }
+}
+
+#google_translate_element {
+  position:fixed;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  clip-path:inset(50%);
+  white-space:nowrap;
+  pointer-events:none;
+}
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-te-balloon-frame,
+iframe.goog-te-balloon-frame {
+  display:none !important;
+  visibility:hidden !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+}
+.goog-text-highlight {
+  background:transparent !important;
+  box-shadow:none !important;
+  border:0 !important;
+}
+</style>
+</head>
+<body>
+
+<div id="google_translate_element" aria-hidden="true"></div>
+<div class="page-toolbar">
+  <div class="toolbar-left">
+    <a class="back-home" href="index.html">← Back to Home</a>
+    <h1>Magic Mobile Car Wash Gallery</h1>
+  </div>
+  <div class="translate-panel" aria-label="Page translation controls">
+    <label for="gallery-language">Language</label>
+    <select id="gallery-language" aria-label="Choose a language">
+      <option value="en">English</option>
+      <option value="ar">Arabic</option>
+      <option value="zh-CN">Chinese (Simplified)</option>
+      <option value="zh-TW">Chinese (Traditional)</option>
+      <option value="fr">French</option>
+      <option value="de">German</option>
+      <option value="ht">Haitian Creole</option>
+      <option value="hi">Hindi</option>
+      <option value="it">Italian</option>
+      <option value="ja">Japanese</option>
+      <option value="ko">Korean</option>
+      <option value="pl">Polish</option>
+      <option value="pt">Portuguese</option>
+      <option value="ru">Russian</option>
+      <option value="es">Spanish</option>
+      <option value="ur">Urdu</option>
+      <option value="vi">Vietnamese</option>
+    </select>
+    <button class="translate-action" id="gallery-translate-button" type="button">Translate</button>
+  </div>
+</div>
+
+<main class="gallery-page">
+<div class="gallery-top">
+<nav aria-label="Gallery categories" class="gallery-filters">
+<button class="gallery-filter is-active" data-filter="All" type="button">All</button>
+<button class="gallery-filter" data-filter="Cars" type="button">Cars</button>
+<button class="gallery-filter" data-filter="Trucks" type="button">Trucks</button>
+<button class="gallery-filter" data-filter="Semi-Trucks" type="button">Semi-Trucks</button>
+<button class="gallery-filter" data-filter="Boats" type="button">Boats</button>
+<button class="gallery-filter" data-filter="Carpets" type="button">Carpets</button>
+<button class="gallery-filter" data-filter="Engines" type="button">Engines</button>
+<button class="gallery-filter" data-filter="Headlights" type="button">Headlights</button>
+<button class="gallery-filter" data-filter="Other" type="button">Other</button>
+</nav>
+</div>
+<section aria-label="Magic Mobile Car Wash photo gallery" class="gallery-grid">
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/727360/e52a55e1ef485240a5282a2f8679b22bcc18d041/original/IMG-4865.jpg?1681166494=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/727360/e52a55e1ef485240a5282a2f8679b22bcc18d041/original/IMG-4865.jpg?1681166494=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611717/f6a4def22b2522d3acbb3653d0290bb37b4231a6/original/62508090074--E733C7D2-F0C3-49DF-AC39-75A78A8A36BC.jpg?1607726606=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611717/f6a4def22b2522d3acbb3653d0290bb37b4231a6/original/62508090074--E733C7D2-F0C3-49DF-AC39-75A78A8A36BC.jpg?1607726606=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/606763/f6b3fa8e17cd8b1705aca7b5c684019688d82907/original/IMG_0119.jpg?1605597572=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/606763/f6b3fa8e17cd8b1705aca7b5c684019688d82907/original/IMG_0119.jpg?1605597572=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611718/939cd6a154bd8838c090cb8218f2cfdbb05b3864/original/IMG-0108.jpg?1607726608=" type="button">
+<img alt="Trucks gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611718/939cd6a154bd8838c090cb8218f2cfdbb05b3864/original/IMG-0108.jpg?1607726608=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611719/7922f40676c8113555aa9d847c2e5860dbdbab68/original/IMG-0118.jpg?1607726611=" type="button">
+<img alt="Trucks gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611719/7922f40676c8113555aa9d847c2e5860dbdbab68/original/IMG-0118.jpg?1607726611=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/630906/26a69d21c8e2d2fbf9d62ce7bd7a9cb4831716b2/original/IMG_0843.jpg?1615836240=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/630906/26a69d21c8e2d2fbf9d62ce7bd7a9cb4831716b2/original/IMG_0843.jpg?1615836240=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Headlights" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622470/9b02ce7b74074393e81c7a9e1ec4dc11b70b15f0/original/IMG_0697.jpg?1612278805=" type="button">
+<img alt="Headlights gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622470/9b02ce7b74074393e81c7a9e1ec4dc11b70b15f0/original/IMG_0697.jpg?1612278805=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Headlights" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622467/64e98647281cf832f5db3d8260ee74e2f9e246da/original/IMG_0704.jpg?1612278802=" type="button">
+<img alt="Headlights gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622467/64e98647281cf832f5db3d8260ee74e2f9e246da/original/IMG_0704.jpg?1612278802=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/630904/6f516aebac91adb929b1eec26ff65935411cfa99/original/IMG_0845.jpg?1615836239=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/630904/6f516aebac91adb929b1eec26ff65935411cfa99/original/IMG_0845.jpg?1615836239=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Engines" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622469/e3ccf22a074e57c6f2e3ff481d40bf10ceae38f5/original/IMG_0700.jpg?1612278804=" type="button">
+<img alt="Engines gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622469/e3ccf22a074e57c6f2e3ff481d40bf10ceae38f5/original/IMG_0700.jpg?1612278804=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Engines" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622468/b63a4d83a308b68a0bd26e3b676d6ef47cc7522e/original/IMG_0703.jpg?1612278803=" type="button">
+<img alt="Engines gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622468/b63a4d83a308b68a0bd26e3b676d6ef47cc7522e/original/IMG_0703.jpg?1612278803=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538407/3b0078f5b536e4e5049977450681ad8f3f02cb71/original/IMG_8284.jpg?1578009601=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538407/3b0078f5b536e4e5049977450681ad8f3f02cb71/original/IMG_8284.jpg?1578009601=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611724/7261ac5f72f259b12293efaf01c3732650efcb78/original/IMG-9334.jpg?1607726630=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611724/7261ac5f72f259b12293efaf01c3732650efcb78/original/IMG-9334.jpg?1607726630=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611725/ee5c4e1ece1731e6145d1001deb8c97a0fa39617/original/IMG-9339.jpg?1607726633=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611725/ee5c4e1ece1731e6145d1001deb8c97a0fa39617/original/IMG-9339.jpg?1607726633=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611721/8e174e9b553251d7860b95a1e580904d97e1f86b/original/IMG-0241.jpg?1607726619=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611721/8e174e9b553251d7860b95a1e580904d97e1f86b/original/IMG-0241.jpg?1607726619=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538410/d15f85743d9c556d6cb98c1d6d48ef330e4867c9/original/IMG_8293.jpg?1578009640=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538410/d15f85743d9c556d6cb98c1d6d48ef330e4867c9/original/IMG_8293.jpg?1578009640=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538411/81bd032012b648fe44fb90f63be47c97d752c0f1/original/IMG_8297.jpg?1578009646=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538411/81bd032012b648fe44fb90f63be47c97d752c0f1/original/IMG_8297.jpg?1578009646=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/630905/88db805b966f30c6786c461fd24ffe54f8038046/original/IMG_0844.jpg?1615836239=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/630905/88db805b966f30c6786c461fd24ffe54f8038046/original/IMG_0844.jpg?1615836239=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Headlights" data-src="https://ded7t1cra1lh5.cloudfront.net/media/633250/f8ef3c90079e9de22a7616dde5fd6b4f2ba0e361/original/CarWash_%282%29.jpg?1616774044=" type="button">
+<img alt="Headlights gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/633250/f8ef3c90079e9de22a7616dde5fd6b4f2ba0e361/original/CarWash_%282%29.jpg?1616774044=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Headlights" data-src="https://ded7t1cra1lh5.cloudfront.net/media/633251/2402a9eb00ad778fd77c35665a11bae9160fcecb/original/CarWash_%283%29.jpg?1616774045=" type="button">
+<img alt="Headlights gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/633251/2402a9eb00ad778fd77c35665a11bae9160fcecb/original/CarWash_%283%29.jpg?1616774045=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538398/da9b9b910e440807142f37ab458e6c0ef00ca579/original/IMG_8192.jpg?1578009560=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538398/da9b9b910e440807142f37ab458e6c0ef00ca579/original/IMG_8192.jpg?1578009560=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622472/fe19246d1982b9e2054510c8df67da0eff25a97f/original/IMG_0638.jpg?1612278807=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622472/fe19246d1982b9e2054510c8df67da0eff25a97f/original/IMG_0638.jpg?1612278807=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622471/d55bbb7b60d84c0c95b5dfd0c070a6ba715cb9a3/original/IMG_0645.jpg?1612278806=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622471/d55bbb7b60d84c0c95b5dfd0c070a6ba715cb9a3/original/IMG_0645.jpg?1612278806=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538408/0e7f704ca6c5e3a22359db0d3156a09f71213898/original/IMG_8285.jpg?1578009626=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538408/0e7f704ca6c5e3a22359db0d3156a09f71213898/original/IMG_8285.jpg?1578009626=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538409/0f5d4fe3eca9225214b92f49f6171dd07361ba6d/original/IMG_8286.jpg?1578009633=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538409/0f5d4fe3eca9225214b92f49f6171dd07361ba6d/original/IMG_8286.jpg?1578009633=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611722/b6926538a836d5612f07fedf3c729476701a3ab5/original/IMG-0255.jpg?1607726622=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611722/b6926538a836d5612f07fedf3c729476701a3ab5/original/IMG-0255.jpg?1607726622=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/630910/c2a69ddf142501fbcdc9d10a35f3ff3774921536/original/IMG_0804.jpg?1615836245=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/630910/c2a69ddf142501fbcdc9d10a35f3ff3774921536/original/IMG_0804.jpg?1615836245=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/630909/e95ca2768ce55ca06f1329d5e9be7b66d42d897e/original/IMG_0810.jpg?1615836244=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/630909/e95ca2768ce55ca06f1329d5e9be7b66d42d897e/original/IMG_0810.jpg?1615836244=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538399/1f807060a83e5655acc87944c2156d8f59d2f816/original/IMG_8195.jpg?1578009564=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538399/1f807060a83e5655acc87944c2156d8f59d2f816/original/IMG_8195.jpg?1578009564=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538400/6dfde8d2d499bf3b662ec7dc958743244162cc0c/original/IMG_8200.jpg?1578009569=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538400/6dfde8d2d499bf3b662ec7dc958743244162cc0c/original/IMG_8200.jpg?1578009569=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538401/34f6ffd423d71af2e075549ddac752183e3e30dc/original/IMG_8215.jpg?1578009574=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538401/34f6ffd423d71af2e075549ddac752183e3e30dc/original/IMG_8215.jpg?1578009574=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538406/7582da5f05830e4e103c99f24ff50c140d42183f/original/IMG_8282.jpg?1578009597=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538406/7582da5f05830e4e103c99f24ff50c140d42183f/original/IMG_8282.jpg?1578009597=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Semi-Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/727356/8c2b6b7ec31b11105836375585cc8a5c013274f3/original/IMG-3943.jpg?1681166479=" type="button">
+<img alt="Semi-Trucks gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/727356/8c2b6b7ec31b11105836375585cc8a5c013274f3/original/IMG-3943.jpg?1681166479=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Semi-Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/727354/fd0818528e86a7c8ca01944607cf10aaa6d63edd/original/69163338513--A49C21E5-EEF0-4541-8813-7DE45566166C.jpg?1681166477=" type="button">
+<img alt="Semi-Trucks gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/727354/fd0818528e86a7c8ca01944607cf10aaa6d63edd/original/69163338513--A49C21E5-EEF0-4541-8813-7DE45566166C.jpg?1681166477=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Semi-Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/727358/d9637ee4d844fa613e377df8f34b211a0fe9053e/original/69378532346--C041CD78-8704-4519-8A48-BC26FB6AB9C7.jpg?1681166488=" type="button">
+<img alt="Semi-Trucks gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/727358/d9637ee4d844fa613e377df8f34b211a0fe9053e/original/69378532346--C041CD78-8704-4519-8A48-BC26FB6AB9C7.jpg?1681166488=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Semi-Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/727355/2021eccdde7613ea0e71993f5b7544f5accbeb1f/original/69163335676--A35583F9-1621-4D47-85BA-2177F6330882.jpg?1681166478=" type="button">
+<img alt="Semi-Trucks gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/727355/2021eccdde7613ea0e71993f5b7544f5accbeb1f/original/69163335676--A35583F9-1621-4D47-85BA-2177F6330882.jpg?1681166478=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611723/c9d32cd403ae6014923c14d6d35964d18eecad35/original/IMG-0269.jpg?1607726626=" type="button">
+<img alt="Trucks gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611723/c9d32cd403ae6014923c14d6d35964d18eecad35/original/IMG-0269.jpg?1607726626=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538413/5ac6624bf5fd099d01bb74489963687c226177d2/original/IMG_8315.jpg?1578009659=" type="button">
+<img alt="Trucks gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538413/5ac6624bf5fd099d01bb74489963687c226177d2/original/IMG_8315.jpg?1578009659=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538414/32389b7c769fd1257c7953b11cb37afbe6c0ec46/original/IMG_8324.jpg?1578009665=" type="button">
+<img alt="Trucks gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538414/32389b7c769fd1257c7953b11cb37afbe6c0ec46/original/IMG_8324.jpg?1578009665=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538405/856e6d002749c5c4d498fbaf772e9c48f3f0ef75/original/IMG_8273.jpg?1578009592=" type="button">
+<img alt="Trucks gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538405/856e6d002749c5c4d498fbaf772e9c48f3f0ef75/original/IMG_8273.jpg?1578009592=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/630903/fbe68c135b2abf2998d9e4d76867fb5a3a3c984f/original/IMG_0847.jpg?1615836238=" type="button">
+<img alt="Cars gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/630903/fbe68c135b2abf2998d9e4d76867fb5a3a3c984f/original/IMG_0847.jpg?1615836238=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538402/d252f316375ff489c0eca35435a924717d7d8697/original/IMG_8236.jpg?1578009579=" type="button">
+<img alt="Trucks gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538402/d252f316375ff489c0eca35435a924717d7d8697/original/IMG_8236.jpg?1578009579=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538403/eda673061b6c6c1c2c8cfcaad308a2b9f40865c1/original/IMG_8242.jpg?1578009583=" type="button">
+<img alt="Trucks gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538403/eda673061b6c6c1c2c8cfcaad308a2b9f40865c1/original/IMG_8242.jpg?1578009583=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538404/ce3d20b85cbbfbeaa8c0f84ff543b9850dc9fae3/original/IMG_8255.jpg?1578009588=" type="button">
+<img alt="Trucks gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538404/ce3d20b85cbbfbeaa8c0f84ff543b9850dc9fae3/original/IMG_8255.jpg?1578009588=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538412/cfa0df99a594343427f9e86188faa189a84bbdaf/original/IMG_8314.jpg?1578009653=" type="button">
+<img alt="Trucks gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538412/cfa0df99a594343427f9e86188faa189a84bbdaf/original/IMG_8314.jpg?1578009653=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Boats" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611720/c8069a4a3e0c2bc929418b2dfdcb9ebc0b174827/original/IMG-0199.jpg?1607726615=" type="button">
+<img alt="Boats gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611720/c8069a4a3e0c2bc929418b2dfdcb9ebc0b174827/original/IMG-0199.jpg?1607726615=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Carpets" data-src="https://ded7t1cra1lh5.cloudfront.net/media/630908/39d7bcfa9e186921965ebd4064b4e5f03725c762/original/IMG_0755.jpg?1615836243=" type="button">
+<img alt="Carpets gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/630908/39d7bcfa9e186921965ebd4064b4e5f03725c762/original/IMG_0755.jpg?1615836243=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Carpets" data-src="https://ded7t1cra1lh5.cloudfront.net/media/630907/287598c79c34b99d20a6613a18da0ecf7a9ea5ce/original/IMG_0757.jpg?1615836241=" type="button">
+<img alt="Carpets gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/630907/287598c79c34b99d20a6613a18da0ecf7a9ea5ce/original/IMG_0757.jpg?1615836241=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Carpets" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622473/69dd08c191dd611bbc4c3bc302c0a4ef5a6ddf0c/original/IMG_0620_%281%29.jpg?1612278808=" type="button">
+<img alt="Carpets gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622473/69dd08c191dd611bbc4c3bc302c0a4ef5a6ddf0c/original/IMG_0620_%281%29.jpg?1612278808=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Carpets" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622474/573ea6454319236e0e9ee851167118566bd4a399/original/IMG_0618.jpg?1612278808=" type="button">
+<img alt="Carpets gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622474/573ea6454319236e0e9ee851167118566bd4a399/original/IMG_0618.jpg?1612278808=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Carpets" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622475/7f0ce23c419cd66664825cbc1ca3454497edc540/original/IMG_0621.jpg?1612278810=" type="button">
+<img alt="Carpets gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622475/7f0ce23c419cd66664825cbc1ca3454497edc540/original/IMG_0621.jpg?1612278810=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Carpets" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622476/0c5a4eb1d841bdd09b8aaf037f72d51906026d12/original/IMG_0620.jpg?1612278811=" type="button">
+<img alt="Carpets gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622476/0c5a4eb1d841bdd09b8aaf037f72d51906026d12/original/IMG_0620.jpg?1612278811=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Headlights" data-src="https://ded7t1cra1lh5.cloudfront.net/media/633249/fc25e7f5f67367354331e82b545ca27538ac6070/original/CarWash_%281%29.jpg?1616774042=" type="button">
+<img alt="Headlights gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/633249/fc25e7f5f67367354331e82b545ca27538ac6070/original/CarWash_%281%29.jpg?1616774042=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Other" data-src="https://ded7t1cra1lh5.cloudfront.net/media/727361/b6bf78e347d1e0e5b26895a67bc6a618dda1e773/original/IMG-4737.jpg?1681166495=" type="button">
+<img alt="Other gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/727361/b6bf78e347d1e0e5b26895a67bc6a618dda1e773/original/IMG-4737.jpg?1681166495=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Other" data-src="https://ded7t1cra1lh5.cloudfront.net/media/727359/59a9996bec7db3be00b3fb41c0266d0a267230f1/original/IMG-4837.PNG?1681166489=" type="button">
+<img alt="Other gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/727359/59a9996bec7db3be00b3fb41c0266d0a267230f1/original/IMG-4837.PNG?1681166489=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Other" data-src="https://ded7t1cra1lh5.cloudfront.net/media/727357/b4bbeb5b8d572869360902c7856b344c964c73ff/original/IMG-3938.PNG?1681166480=" type="button">
+<img alt="Other gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/727357/b4bbeb5b8d572869360902c7856b344c964c73ff/original/IMG-3938.PNG?1681166480=" decoding="async">
+</button>
+<button aria-label="Open gallery image" class="gallery-item" data-category="Other" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538415/fac0fef5f39d998671c3f97c3f57a3fcbe3a93e8/original/MMCW_Logos-02.jpg?1578009670=" type="button">
+<img alt="Other gallery photo" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538415/fac0fef5f39d998671c3f97c3f57a3fcbe3a93e8/original/MMCW_Logos-02.jpg?1578009670=" decoding="async">
+</button>
+</section>
+</main>
+<div aria-label="Expanded gallery image" aria-modal="true" class="lightbox" id="gallery-lightbox" role="dialog">
+<button aria-label="Close image" class="lightbox-close" type="button">×</button>
+<button aria-label="Previous image" class="lightbox-nav lightbox-prev" type="button">‹</button>
+<img alt="Expanded gallery photo" draggable="false" src=""/>
+<button aria-label="Next image" class="lightbox-nav lightbox-next" type="button">›</button>
+<div aria-live="polite" class="lightbox-counter"></div>
+</div>
+<script>
+const filters=[...document.querySelectorAll('.gallery-filter')];
+const items=[...document.querySelectorAll('.gallery-item')];
+const lightbox=document.getElementById('gallery-lightbox');
+const lightboxImage=lightbox.querySelector('img');
+const closeButton=lightbox.querySelector('.lightbox-close');
+const previousButton=lightbox.querySelector('.lightbox-prev');
+const nextButton=lightbox.querySelector('.lightbox-next');
+const counter=lightbox.querySelector('.lightbox-counter');
+let currentIndex=0;
+let touchStartX=0;
+let touchStartY=0;
+let touchEndX=0;
+let touchEndY=0;
+let lastFocusedGalleryItem=null;
+
+function visibleItems(){return items.filter(item=>!item.hidden);}
+function showImage(index){
+  const available=visibleItems();
+  if(!available.length)return;
+  currentIndex=(index+available.length)%available.length;
+  const item=available[currentIndex];
+  lightboxImage.src=item.dataset.src;
+  lightboxImage.alt=item.querySelector('img')?.alt||'Expanded gallery photo';
+  counter.textContent=`${currentIndex+1} / ${available.length}`;
+}
+function openLightbox(item){
+  const available=visibleItems();
+  currentIndex=Math.max(0,available.indexOf(item));
+  lastFocusedGalleryItem=item;
+  showImage(currentIndex);
+  lightbox.classList.add('is-open');
+  lightbox.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  closeButton.focus();
+}
+function closeLightbox(){
+  lightbox.classList.remove('is-open');
+  lightbox.setAttribute('aria-hidden','true');
+  lightboxImage.src='';
+  document.body.style.overflow='';
+  lastFocusedGalleryItem?.focus?.();
+}
+function previousImage(){showImage(currentIndex-1);}
+function nextImage(){showImage(currentIndex+1);}
+
+filters.forEach(button=>button.addEventListener('click',()=>{
+  filters.forEach(x=>x.classList.remove('is-active'));
+  button.classList.add('is-active');
+  const filter=button.dataset.filter;
+  items.forEach(item=>{item.hidden=filter!=='All'&&item.dataset.category!==filter;});
+}));
+items.forEach(item=>item.addEventListener('click',()=>openLightbox(item)));
+closeButton.addEventListener('click',closeLightbox);
+previousButton.addEventListener('click',event=>{event.stopPropagation();previousImage();});
+nextButton.addEventListener('click',event=>{event.stopPropagation();nextImage();});
+lightbox.addEventListener('click',event=>{if(event.target===lightbox)closeLightbox();});
+document.addEventListener('keydown',event=>{
+  if(!lightbox.classList.contains('is-open'))return;
+  if(event.key==='Escape')closeLightbox();
+  if(event.key==='ArrowLeft')previousImage();
+  if(event.key==='ArrowRight')nextImage();
+});
+lightbox.addEventListener('touchstart',event=>{
+  const touch=event.changedTouches[0];
+  touchStartX=touch.screenX;
+  touchStartY=touch.screenY;
+},{passive:true});
+lightbox.addEventListener('touchend',event=>{
+  const touch=event.changedTouches[0];
+  touchEndX=touch.screenX;
+  touchEndY=touch.screenY;
+  const deltaX=touchEndX-touchStartX;
+  const deltaY=touchEndY-touchStartY;
+  if(Math.abs(deltaX)>55&&Math.abs(deltaX)>Math.abs(deltaY)){
+    deltaX<0?nextImage():previousImage();
+  }
+},{passive:true});
+
+const LANGUAGE_STORAGE_KEY = 'magicMobileLanguage';
+const GALLERY_LANGUAGES = [
+  'ar', 'zh-CN', 'zh-TW', 'fr', 'de', 'ht', 'hi', 'it',
+  'ja', 'ko', 'pl', 'pt', 'ru', 'es', 'ur', 'vi'
+];
+
+function getTranslateCookieLanguage() {
+  const match = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/([^;]+)/);
+  return match ? decodeURIComponent(match[1]) : 'en';
+}
+
+function setTranslateCookie(language) {
+  const value = '/en/' + language;
+  document.cookie = 'googtrans=' + value + '; path=/; SameSite=Lax';
+  if (location.hostname) {
+    document.cookie = 'googtrans=' + value + '; path=/; domain=' + location.hostname + '; SameSite=Lax';
+  }
+}
+
+function clearTranslateCookies() {
+  const expires = 'Thu, 01 Jan 1970 00:00:00 GMT';
+  const hostParts = location.hostname ? location.hostname.split('.') : [];
+  const domains = ['', location.hostname];
+  if (hostParts.length > 1) domains.push('.' + hostParts.slice(-2).join('.'));
+
+  [...new Set(domains)].forEach(function (domain) {
+    const domainPart = domain ? '; domain=' + domain : '';
+    document.cookie = 'googtrans=; expires=' + expires + '; path=/' + domainPart;
+    document.cookie = 'googtrans=; Max-Age=0; path=/' + domainPart;
+  });
+}
+
+(function restoreSavedLanguageBeforeGoogleLoads() {
+  const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY) || 'en';
+  const cookieLanguage = getTranslateCookieLanguage();
+
+  if (savedLanguage === 'en') {
+    if (cookieLanguage !== 'en') clearTranslateCookies();
+    return;
+  }
+
+  if (GALLERY_LANGUAGES.includes(savedLanguage) && cookieLanguage !== savedLanguage) {
+    setTranslateCookie(savedLanguage);
+  }
+}());
+
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: GALLERY_LANGUAGES.join(','),
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+
+const galleryLanguage = document.getElementById('gallery-language');
+const galleryTranslateButton = document.getElementById('gallery-translate-button');
+const currentGalleryLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY) || getTranslateCookieLanguage();
+galleryLanguage.value = GALLERY_LANGUAGES.includes(currentGalleryLanguage) || currentGalleryLanguage === 'en'
+  ? currentGalleryLanguage
+  : 'en';
+
+galleryTranslateButton.addEventListener('click', function () {
+  const language = galleryLanguage.value;
+
+  if (language === 'en') {
+    localStorage.removeItem(LANGUAGE_STORAGE_KEY);
+    clearTranslateCookies();
+    location.reload();
+    return;
+  }
+
+  localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+  setTranslateCookie(language);
+  location.reload();
+});
+
+(function preserveLanguageForLocalNavigation() {
+  function currentLanguage() {
+    const googleSelect = document.querySelector('.goog-te-combo');
+    if (googleSelect) return googleSelect.value || 'en';
+    return localStorage.getItem(LANGUAGE_STORAGE_KEY)
+      || getTranslateCookieLanguage()
+      || 'en';
+  }
+
+  function syncLanguage() {
+    const language = currentLanguage();
+    if (language && language !== 'en') {
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+      setTranslateCookie(language);
+    } else {
+      localStorage.removeItem(LANGUAGE_STORAGE_KEY);
+      clearTranslateCookies();
+    }
+  }
+
+  document.addEventListener('click', function (event) {
+    const link = event.target.closest('a[href]');
+    if (!link || link.target || link.hasAttribute('download')) return;
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:') || href.startsWith('sms:')) return;
+
+    try {
+      const url = new URL(href, location.href);
+      if (url.origin === location.origin) syncLanguage();
+    } catch (_) {}
+  }, true);
+}());
+
+(function enableEnterForKeyboardControls() {
+  document.addEventListener('keydown', function (event) {
+    if (event.key !== 'Enter' || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    const target = event.target;
+    if (!(target instanceof HTMLElement) || target.matches('[data-human-check]')) return;
+
+    if (target.matches('input[type="checkbox"], input[type="radio"]')) {
+      event.preventDefault();
+      target.click();
+    }
+  });
+}());
+
+const removeGoogleFeedbackPopup = function () {
+  document.querySelectorAll('.goog-tooltip, .goog-te-balloon-frame, iframe.goog-te-balloon-frame').forEach(function (element) {
+    element.remove();
+  });
+};
+
+removeGoogleFeedbackPopup();
+new MutationObserver(removeGoogleFeedbackPopup).observe(document.documentElement, {
+  childList: true,
+  subtree: true
+});
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+
+</body>
+</html>
