@@ -3652,6 +3652,21 @@ background: linear-gradient(180deg, #ff5557 0%, var(--red-dark) 100%);
         background-size: 100% auto;
       }
     }
+
+    /* Mobile-only spacing adjustments */
+    @media (max-width: 760px) {
+      .header-action-buttons {
+        gap: 4px;
+      }
+
+      .header-action-buttons .quote-link {
+        margin: 0;
+      }
+
+      .hero .language-popup {
+        margin-top: 75px;
+      }
+    }
 </style>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
