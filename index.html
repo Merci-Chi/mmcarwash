@@ -238,7 +238,7 @@ position: relative;
       overflow: hidden;
       background:
         linear-gradient(90deg, rgba(4, 9, 18, 0.72) 0%, rgba(4, 9, 18, 0.34) 52%, rgba(4, 9, 18, 0.08) 100%),
-        url("images/topimg.jpg") center / cover no-repeat;
+        url("images/topimg.jpg") 50% 58% / cover no-repeat;
     }
     .language-popup  {
 position: absolute;
@@ -3406,7 +3406,7 @@ background: linear-gradient(180deg, #ff5557 0%, var(--red-dark) 100%);
       width: min(calc(100% - 24px), 420px);
       margin: 10px auto -8px;
       justify-content: center;
-      gap: 8px;
+      gap: 3px;
     }
     .header-action-buttons .quote-link {
       flex: 1 1 0;
@@ -3638,6 +3638,20 @@ background: linear-gradient(180deg, #ff5557 0%, var(--red-dark) 100%);
       }
     }
 
+
+
+    /* Mobile hero photo: show the full requested image beneath the language card. */
+    @media (max-width: 600px) {
+      .hero {
+        min-height: 0;
+        padding-bottom: clamp(460px, 138vw, 660px);
+        background-color: #102a4c;
+        background-image: url("images/01_IMG-4865.jpg");
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: 100% auto;
+      }
+    }
 </style>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
