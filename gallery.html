@@ -15,8 +15,7 @@
 html{min-height:100%;background:#f4f7fb}
 body{margin:0;min-width:320px;min-height:100vh;background:#f4f7fb;color:var(--navy);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
 a{color:inherit;text-decoration:none}
-button{font:inherit}
-a:focus,a:focus-visible,button:focus,button:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+a:focus,a:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
 .gallery-page{width:min(100%,1240px);margin:0 auto;padding:28px 20px 56px}
 .gallery-top{margin-bottom:24px}
 .back-home{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 15px;border:1px solid rgba(23,54,95,.18);border-radius:999px;background:#fff;font-size:13px;font-weight:850;box-shadow:0 5px 15px rgba(16,42,76,.08)}
@@ -149,10 +148,6 @@ iframe.goog-te-balloon-frame {
 }
 body a[href]:focus,
 body a[href]:focus-visible,
-body button:not([disabled]):focus,
-body button:not([disabled]):focus-visible,
-body button:focus,
-body button:focus-visible,
 body select:focus,
 body select:focus-visible,
 body input:not([type="hidden"]):focus,
@@ -194,196 +189,196 @@ body [tabindex]:not([tabindex="-1"]):focus-visible {
 <option value="ur">Urdu</option>
 <option value="vi">Vietnamese</option>
 </select>
-<button class="translate-action" id="gallery-translate-button" tabindex="0" type="button">Translate</button>
+<a class="translate-action" href="#" id="gallery-translate-button" role="button">Translate</a>
 </div>
 </div>
 <main class="gallery-page">
 <div class="gallery-top">
 <nav aria-label="Gallery categories" class="gallery-filters" tabindex="0">
-<button class="gallery-filter is-active" data-filter="All" tabindex="0" type="button">All</button>
-<button class="gallery-filter" data-filter="Cars" tabindex="0" type="button">Cars</button>
-<button class="gallery-filter" data-filter="Trucks" tabindex="0" type="button">Trucks</button>
-<button class="gallery-filter" data-filter="Semi-Trucks" tabindex="0" type="button">Semi-Trucks</button>
-<button class="gallery-filter" data-filter="Boats" tabindex="0" type="button">Boats</button>
-<button class="gallery-filter" data-filter="Carpets" tabindex="0" type="button">Carpets</button>
-<button class="gallery-filter" data-filter="Engines" tabindex="0" type="button">Engines</button>
-<button class="gallery-filter" data-filter="Headlights" tabindex="0" type="button">Headlights</button>
-<button class="gallery-filter" data-filter="Other" tabindex="0" type="button">Other</button>
+<a class="gallery-filter is-active" data-filter="All" href="#" role="button">All</a>
+<a class="gallery-filter" data-filter="Cars" href="#" role="button">Cars</a>
+<a class="gallery-filter" data-filter="Trucks" href="#" role="button">Trucks</a>
+<a class="gallery-filter" data-filter="Semi-Trucks" href="#" role="button">Semi-Trucks</a>
+<a class="gallery-filter" data-filter="Boats" href="#" role="button">Boats</a>
+<a class="gallery-filter" data-filter="Carpets" href="#" role="button">Carpets</a>
+<a class="gallery-filter" data-filter="Engines" href="#" role="button">Engines</a>
+<a class="gallery-filter" data-filter="Headlights" href="#" role="button">Headlights</a>
+<a class="gallery-filter" data-filter="Other" href="#" role="button">Other</a>
 </nav>
 </div>
 <section aria-label="Magic Mobile Car Wash photo gallery" class="gallery-grid">
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/727360/e52a55e1ef485240a5282a2f8679b22bcc18d041/original/IMG-4865.jpg?1681166494=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/727360/e52a55e1ef485240a5282a2f8679b22bcc18d041/original/IMG-4865.jpg?1681166494="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611717/f6a4def22b2522d3acbb3653d0290bb37b4231a6/original/62508090074--E733C7D2-F0C3-49DF-AC39-75A78A8A36BC.jpg?1607726606=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611717/f6a4def22b2522d3acbb3653d0290bb37b4231a6/original/62508090074--E733C7D2-F0C3-49DF-AC39-75A78A8A36BC.jpg?1607726606="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/606763/f6b3fa8e17cd8b1705aca7b5c684019688d82907/original/IMG_0119.jpg?1605597572=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/606763/f6b3fa8e17cd8b1705aca7b5c684019688d82907/original/IMG_0119.jpg?1605597572="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611718/939cd6a154bd8838c090cb8218f2cfdbb05b3864/original/IMG-0108.jpg?1607726608=" tabindex="0" type="button">
-<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611718/939cd6a154bd8838c090cb8218f2cfdbb05b3864/original/IMG-0108.jpg?1607726608="/>
-</button>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/01_IMG-4865.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/01_IMG-4865.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/02_62508090074--E733C7D2-F0C3-49DF-AC39-75A78A8A36BC.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/02_62508090074--E733C7D2-F0C3-49DF-AC39-75A78A8A36BC.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/03_IMG_0119.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/03_IMG_0119.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="images/04_IMG-0108.jpg" href="#gallery-lightbox" role="button">
+<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="images/04_IMG-0108.jpg"/>
+</a>
 
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/630906/26a69d21c8e2d2fbf9d62ce7bd7a9cb4831716b2/original/IMG_0843.jpg?1615836240=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/630906/26a69d21c8e2d2fbf9d62ce7bd7a9cb4831716b2/original/IMG_0843.jpg?1615836240="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Headlights" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622470/9b02ce7b74074393e81c7a9e1ec4dc11b70b15f0/original/IMG_0697.jpg?1612278805=" tabindex="0" type="button">
-<img alt="Headlights gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622470/9b02ce7b74074393e81c7a9e1ec4dc11b70b15f0/original/IMG_0697.jpg?1612278805="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Headlights" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622467/64e98647281cf832f5db3d8260ee74e2f9e246da/original/IMG_0704.jpg?1612278802=" tabindex="0" type="button">
-<img alt="Headlights gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622467/64e98647281cf832f5db3d8260ee74e2f9e246da/original/IMG_0704.jpg?1612278802="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/630904/6f516aebac91adb929b1eec26ff65935411cfa99/original/IMG_0845.jpg?1615836239=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/630904/6f516aebac91adb929b1eec26ff65935411cfa99/original/IMG_0845.jpg?1615836239="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Engines" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622469/e3ccf22a074e57c6f2e3ff481d40bf10ceae38f5/original/IMG_0700.jpg?1612278804=" tabindex="0" type="button">
-<img alt="Engines gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622469/e3ccf22a074e57c6f2e3ff481d40bf10ceae38f5/original/IMG_0700.jpg?1612278804="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Engines" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622468/b63a4d83a308b68a0bd26e3b676d6ef47cc7522e/original/IMG_0703.jpg?1612278803=" tabindex="0" type="button">
-<img alt="Engines gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622468/b63a4d83a308b68a0bd26e3b676d6ef47cc7522e/original/IMG_0703.jpg?1612278803="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538407/3b0078f5b536e4e5049977450681ad8f3f02cb71/original/IMG_8284.jpg?1578009601=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538407/3b0078f5b536e4e5049977450681ad8f3f02cb71/original/IMG_8284.jpg?1578009601="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611724/7261ac5f72f259b12293efaf01c3732650efcb78/original/IMG-9334.jpg?1607726630=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611724/7261ac5f72f259b12293efaf01c3732650efcb78/original/IMG-9334.jpg?1607726630="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611725/ee5c4e1ece1731e6145d1001deb8c97a0fa39617/original/IMG-9339.jpg?1607726633=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611725/ee5c4e1ece1731e6145d1001deb8c97a0fa39617/original/IMG-9339.jpg?1607726633="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611721/8e174e9b553251d7860b95a1e580904d97e1f86b/original/IMG-0241.jpg?1607726619=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611721/8e174e9b553251d7860b95a1e580904d97e1f86b/original/IMG-0241.jpg?1607726619="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538410/d15f85743d9c556d6cb98c1d6d48ef330e4867c9/original/IMG_8293.jpg?1578009640=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538410/d15f85743d9c556d6cb98c1d6d48ef330e4867c9/original/IMG_8293.jpg?1578009640="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538411/81bd032012b648fe44fb90f63be47c97d752c0f1/original/IMG_8297.jpg?1578009646=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538411/81bd032012b648fe44fb90f63be47c97d752c0f1/original/IMG_8297.jpg?1578009646="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/630905/88db805b966f30c6786c461fd24ffe54f8038046/original/IMG_0844.jpg?1615836239=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/630905/88db805b966f30c6786c461fd24ffe54f8038046/original/IMG_0844.jpg?1615836239="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Headlights" data-src="https://ded7t1cra1lh5.cloudfront.net/media/633250/f8ef3c90079e9de22a7616dde5fd6b4f2ba0e361/original/CarWash_%282%29.jpg?1616774044=" tabindex="0" type="button">
-<img alt="Headlights gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/633250/f8ef3c90079e9de22a7616dde5fd6b4f2ba0e361/original/CarWash_%282%29.jpg?1616774044="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Headlights" data-src="https://ded7t1cra1lh5.cloudfront.net/media/633251/2402a9eb00ad778fd77c35665a11bae9160fcecb/original/CarWash_%283%29.jpg?1616774045=" tabindex="0" type="button">
-<img alt="Headlights gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/633251/2402a9eb00ad778fd77c35665a11bae9160fcecb/original/CarWash_%283%29.jpg?1616774045="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538398/da9b9b910e440807142f37ab458e6c0ef00ca579/original/IMG_8192.jpg?1578009560=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538398/da9b9b910e440807142f37ab458e6c0ef00ca579/original/IMG_8192.jpg?1578009560="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622472/fe19246d1982b9e2054510c8df67da0eff25a97f/original/IMG_0638.jpg?1612278807=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622472/fe19246d1982b9e2054510c8df67da0eff25a97f/original/IMG_0638.jpg?1612278807="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622471/d55bbb7b60d84c0c95b5dfd0c070a6ba715cb9a3/original/IMG_0645.jpg?1612278806=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622471/d55bbb7b60d84c0c95b5dfd0c070a6ba715cb9a3/original/IMG_0645.jpg?1612278806="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538408/0e7f704ca6c5e3a22359db0d3156a09f71213898/original/IMG_8285.jpg?1578009626=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538408/0e7f704ca6c5e3a22359db0d3156a09f71213898/original/IMG_8285.jpg?1578009626="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538409/0f5d4fe3eca9225214b92f49f6171dd07361ba6d/original/IMG_8286.jpg?1578009633=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538409/0f5d4fe3eca9225214b92f49f6171dd07361ba6d/original/IMG_8286.jpg?1578009633="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611722/b6926538a836d5612f07fedf3c729476701a3ab5/original/IMG-0255.jpg?1607726622=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611722/b6926538a836d5612f07fedf3c729476701a3ab5/original/IMG-0255.jpg?1607726622="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/630910/c2a69ddf142501fbcdc9d10a35f3ff3774921536/original/IMG_0804.jpg?1615836245=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/630910/c2a69ddf142501fbcdc9d10a35f3ff3774921536/original/IMG_0804.jpg?1615836245="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/630909/e95ca2768ce55ca06f1329d5e9be7b66d42d897e/original/IMG_0810.jpg?1615836244=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/630909/e95ca2768ce55ca06f1329d5e9be7b66d42d897e/original/IMG_0810.jpg?1615836244="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538399/1f807060a83e5655acc87944c2156d8f59d2f816/original/IMG_8195.jpg?1578009564=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538399/1f807060a83e5655acc87944c2156d8f59d2f816/original/IMG_8195.jpg?1578009564="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538400/6dfde8d2d499bf3b662ec7dc958743244162cc0c/original/IMG_8200.jpg?1578009569=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538400/6dfde8d2d499bf3b662ec7dc958743244162cc0c/original/IMG_8200.jpg?1578009569="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538401/34f6ffd423d71af2e075549ddac752183e3e30dc/original/IMG_8215.jpg?1578009574=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538401/34f6ffd423d71af2e075549ddac752183e3e30dc/original/IMG_8215.jpg?1578009574="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538406/7582da5f05830e4e103c99f24ff50c140d42183f/original/IMG_8282.jpg?1578009597=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538406/7582da5f05830e4e103c99f24ff50c140d42183f/original/IMG_8282.jpg?1578009597="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Semi-Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/727356/8c2b6b7ec31b11105836375585cc8a5c013274f3/original/IMG-3943.jpg?1681166479=" tabindex="0" type="button">
-<img alt="Semi-Trucks gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/727356/8c2b6b7ec31b11105836375585cc8a5c013274f3/original/IMG-3943.jpg?1681166479="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Semi-Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/727354/fd0818528e86a7c8ca01944607cf10aaa6d63edd/original/69163338513--A49C21E5-EEF0-4541-8813-7DE45566166C.jpg?1681166477=" tabindex="0" type="button">
-<img alt="Semi-Trucks gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/727354/fd0818528e86a7c8ca01944607cf10aaa6d63edd/original/69163338513--A49C21E5-EEF0-4541-8813-7DE45566166C.jpg?1681166477="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Semi-Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/727358/d9637ee4d844fa613e377df8f34b211a0fe9053e/original/69378532346--C041CD78-8704-4519-8A48-BC26FB6AB9C7.jpg?1681166488=" tabindex="0" type="button">
-<img alt="Semi-Trucks gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/727358/d9637ee4d844fa613e377df8f34b211a0fe9053e/original/69378532346--C041CD78-8704-4519-8A48-BC26FB6AB9C7.jpg?1681166488="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Semi-Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/727355/2021eccdde7613ea0e71993f5b7544f5accbeb1f/original/69163335676--A35583F9-1621-4D47-85BA-2177F6330882.jpg?1681166478=" tabindex="0" type="button">
-<img alt="Semi-Trucks gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/727355/2021eccdde7613ea0e71993f5b7544f5accbeb1f/original/69163335676--A35583F9-1621-4D47-85BA-2177F6330882.jpg?1681166478="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611723/c9d32cd403ae6014923c14d6d35964d18eecad35/original/IMG-0269.jpg?1607726626=" tabindex="0" type="button">
-<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611723/c9d32cd403ae6014923c14d6d35964d18eecad35/original/IMG-0269.jpg?1607726626="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538413/5ac6624bf5fd099d01bb74489963687c226177d2/original/IMG_8315.jpg?1578009659=" tabindex="0" type="button">
-<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538413/5ac6624bf5fd099d01bb74489963687c226177d2/original/IMG_8315.jpg?1578009659="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538414/32389b7c769fd1257c7953b11cb37afbe6c0ec46/original/IMG_8324.jpg?1578009665=" tabindex="0" type="button">
-<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538414/32389b7c769fd1257c7953b11cb37afbe6c0ec46/original/IMG_8324.jpg?1578009665="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538405/856e6d002749c5c4d498fbaf772e9c48f3f0ef75/original/IMG_8273.jpg?1578009592=" tabindex="0" type="button">
-<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538405/856e6d002749c5c4d498fbaf772e9c48f3f0ef75/original/IMG_8273.jpg?1578009592="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="https://ded7t1cra1lh5.cloudfront.net/media/630903/fbe68c135b2abf2998d9e4d76867fb5a3a3c984f/original/IMG_0847.jpg?1615836238=" tabindex="0" type="button">
-<img alt="Cars gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/630903/fbe68c135b2abf2998d9e4d76867fb5a3a3c984f/original/IMG_0847.jpg?1615836238="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538402/d252f316375ff489c0eca35435a924717d7d8697/original/IMG_8236.jpg?1578009579=" tabindex="0" type="button">
-<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538402/d252f316375ff489c0eca35435a924717d7d8697/original/IMG_8236.jpg?1578009579="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538403/eda673061b6c6c1c2c8cfcaad308a2b9f40865c1/original/IMG_8242.jpg?1578009583=" tabindex="0" type="button">
-<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538403/eda673061b6c6c1c2c8cfcaad308a2b9f40865c1/original/IMG_8242.jpg?1578009583="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538404/ce3d20b85cbbfbeaa8c0f84ff543b9850dc9fae3/original/IMG_8255.jpg?1578009588=" tabindex="0" type="button">
-<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538404/ce3d20b85cbbfbeaa8c0f84ff543b9850dc9fae3/original/IMG_8255.jpg?1578009588="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538412/cfa0df99a594343427f9e86188faa189a84bbdaf/original/IMG_8314.jpg?1578009653=" tabindex="0" type="button">
-<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538412/cfa0df99a594343427f9e86188faa189a84bbdaf/original/IMG_8314.jpg?1578009653="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Boats" data-src="https://ded7t1cra1lh5.cloudfront.net/media/611720/c8069a4a3e0c2bc929418b2dfdcb9ebc0b174827/original/IMG-0199.jpg?1607726615=" tabindex="0" type="button">
-<img alt="Boats gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/611720/c8069a4a3e0c2bc929418b2dfdcb9ebc0b174827/original/IMG-0199.jpg?1607726615="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Carpets" data-src="https://ded7t1cra1lh5.cloudfront.net/media/630908/39d7bcfa9e186921965ebd4064b4e5f03725c762/original/IMG_0755.jpg?1615836243=" tabindex="0" type="button">
-<img alt="Carpets gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/630908/39d7bcfa9e186921965ebd4064b4e5f03725c762/original/IMG_0755.jpg?1615836243="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Carpets" data-src="https://ded7t1cra1lh5.cloudfront.net/media/630907/287598c79c34b99d20a6613a18da0ecf7a9ea5ce/original/IMG_0757.jpg?1615836241=" tabindex="0" type="button">
-<img alt="Carpets gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/630907/287598c79c34b99d20a6613a18da0ecf7a9ea5ce/original/IMG_0757.jpg?1615836241="/>
-</button>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/05_IMG_0843.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/05_IMG_0843.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Headlights" data-src="images/06_IMG_0697.jpg" href="#gallery-lightbox" role="button">
+<img alt="Headlights gallery photo" decoding="async" loading="lazy" src="images/06_IMG_0697.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Headlights" data-src="images/07_IMG_0704.jpg" href="#gallery-lightbox" role="button">
+<img alt="Headlights gallery photo" decoding="async" loading="lazy" src="images/07_IMG_0704.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/08_IMG_0845.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/08_IMG_0845.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Engines" data-src="images/09_IMG_0700.jpg" href="#gallery-lightbox" role="button">
+<img alt="Engines gallery photo" decoding="async" loading="lazy" src="images/09_IMG_0700.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Engines" data-src="images/10_IMG_0703.jpg" href="#gallery-lightbox" role="button">
+<img alt="Engines gallery photo" decoding="async" loading="lazy" src="images/10_IMG_0703.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/11_IMG_8284.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/11_IMG_8284.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/12_IMG-9334.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/12_IMG-9334.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/13_IMG-9339.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/13_IMG-9339.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/14_IMG-0241.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/14_IMG-0241.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/15_IMG_8293.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/15_IMG_8293.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/16_IMG_8297.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/16_IMG_8297.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/17_IMG_0844.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/17_IMG_0844.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Headlights" data-src="images/18_CarWash__282_29.jpg" href="#gallery-lightbox" role="button">
+<img alt="Headlights gallery photo" decoding="async" loading="lazy" src="images/18_CarWash__282_29.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Headlights" data-src="images/19_CarWash__283_29.jpg" href="#gallery-lightbox" role="button">
+<img alt="Headlights gallery photo" decoding="async" loading="lazy" src="images/19_CarWash__283_29.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/20_IMG_8192.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/20_IMG_8192.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/21_IMG_0638.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/21_IMG_0638.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/22_IMG_0645.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/22_IMG_0645.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/23_IMG_8285.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/23_IMG_8285.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/24_IMG_8286.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/24_IMG_8286.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/25_IMG-0255.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/25_IMG-0255.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/26_IMG_0804.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/26_IMG_0804.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/27_IMG_0810.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/27_IMG_0810.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/28_IMG_8195.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/28_IMG_8195.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/29_IMG_8200.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/29_IMG_8200.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/30_IMG_8215.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/30_IMG_8215.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/31_IMG_8282.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/31_IMG_8282.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Semi-Trucks" data-src="images/32_IMG-3943.jpg" href="#gallery-lightbox" role="button">
+<img alt="Semi-Trucks gallery photo" decoding="async" loading="lazy" src="images/32_IMG-3943.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Semi-Trucks" data-src="images/33_69163338513--A49C21E5-EEF0-4541-8813-7DE45566166C.jpg" href="#gallery-lightbox" role="button">
+<img alt="Semi-Trucks gallery photo" decoding="async" loading="lazy" src="images/33_69163338513--A49C21E5-EEF0-4541-8813-7DE45566166C.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Semi-Trucks" data-src="images/34_69378532346--C041CD78-8704-4519-8A48-BC26FB6AB9C7.jpg" href="#gallery-lightbox" role="button">
+<img alt="Semi-Trucks gallery photo" decoding="async" loading="lazy" src="images/34_69378532346--C041CD78-8704-4519-8A48-BC26FB6AB9C7.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Semi-Trucks" data-src="images/35_69163335676--A35583F9-1621-4D47-85BA-2177F6330882.jpg" href="#gallery-lightbox" role="button">
+<img alt="Semi-Trucks gallery photo" decoding="async" loading="lazy" src="images/35_69163335676--A35583F9-1621-4D47-85BA-2177F6330882.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="images/36_IMG-0269.jpg" href="#gallery-lightbox" role="button">
+<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="images/36_IMG-0269.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="images/37_IMG_8315.jpg" href="#gallery-lightbox" role="button">
+<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="images/37_IMG_8315.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="images/38_IMG_8324.jpg" href="#gallery-lightbox" role="button">
+<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="images/38_IMG_8324.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="images/39_IMG_8273.jpg" href="#gallery-lightbox" role="button">
+<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="images/39_IMG_8273.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Cars" data-src="images/40_IMG_0847.jpg" href="#gallery-lightbox" role="button">
+<img alt="Cars gallery photo" decoding="async" loading="lazy" src="images/40_IMG_0847.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="images/41_IMG_8236.jpg" href="#gallery-lightbox" role="button">
+<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="images/41_IMG_8236.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="images/42_IMG_8242.jpg" href="#gallery-lightbox" role="button">
+<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="images/42_IMG_8242.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="images/43_IMG_8255.jpg" href="#gallery-lightbox" role="button">
+<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="images/43_IMG_8255.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Trucks" data-src="images/44_IMG_8314.jpg" href="#gallery-lightbox" role="button">
+<img alt="Trucks gallery photo" decoding="async" loading="lazy" src="images/44_IMG_8314.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Boats" data-src="images/45_IMG-0199.jpg" href="#gallery-lightbox" role="button">
+<img alt="Boats gallery photo" decoding="async" loading="lazy" src="images/45_IMG-0199.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Carpets" data-src="images/46_IMG_0755.jpg" href="#gallery-lightbox" role="button">
+<img alt="Carpets gallery photo" decoding="async" loading="lazy" src="images/46_IMG_0755.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Carpets" data-src="images/47_IMG_0757.jpg" href="#gallery-lightbox" role="button">
+<img alt="Carpets gallery photo" decoding="async" loading="lazy" src="images/47_IMG_0757.jpg"/>
+</a>
 
-<button aria-label="Open gallery image" class="gallery-item" data-category="Carpets" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622474/573ea6454319236e0e9ee851167118566bd4a399/original/IMG_0618.jpg?1612278808=" tabindex="0" type="button">
-<img alt="Carpets gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622474/573ea6454319236e0e9ee851167118566bd4a399/original/IMG_0618.jpg?1612278808="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Carpets" data-src="https://ded7t1cra1lh5.cloudfront.net/media/622475/7f0ce23c419cd66664825cbc1ca3454497edc540/original/IMG_0621.jpg?1612278810=" tabindex="0" type="button">
-<img alt="Carpets gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/622475/7f0ce23c419cd66664825cbc1ca3454497edc540/original/IMG_0621.jpg?1612278810="/>
-</button>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Carpets" data-src="images/48_IMG_0618.jpg" href="#gallery-lightbox" role="button">
+<img alt="Carpets gallery photo" decoding="async" loading="lazy" src="images/48_IMG_0618.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Carpets" data-src="images/49_IMG_0621.jpg" href="#gallery-lightbox" role="button">
+<img alt="Carpets gallery photo" decoding="async" loading="lazy" src="images/49_IMG_0621.jpg"/>
+</a>
 
 
-<button aria-label="Open gallery image" class="gallery-item" data-category="Other" data-src="https://ded7t1cra1lh5.cloudfront.net/media/727361/b6bf78e347d1e0e5b26895a67bc6a618dda1e773/original/IMG-4737.jpg?1681166495=" tabindex="0" type="button">
-<img alt="Other gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/727361/b6bf78e347d1e0e5b26895a67bc6a618dda1e773/original/IMG-4737.jpg?1681166495="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Other" data-src="https://ded7t1cra1lh5.cloudfront.net/media/727359/59a9996bec7db3be00b3fb41c0266d0a267230f1/original/IMG-4837.PNG?1681166489=" tabindex="0" type="button">
-<img alt="Other gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/727359/59a9996bec7db3be00b3fb41c0266d0a267230f1/original/IMG-4837.PNG?1681166489="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Other" data-src="https://ded7t1cra1lh5.cloudfront.net/media/727357/b4bbeb5b8d572869360902c7856b344c964c73ff/original/IMG-3938.PNG?1681166480=" tabindex="0" type="button">
-<img alt="Other gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/727357/b4bbeb5b8d572869360902c7856b344c964c73ff/original/IMG-3938.PNG?1681166480="/>
-</button>
-<button aria-label="Open gallery image" class="gallery-item" data-category="Other" data-src="https://ded7t1cra1lh5.cloudfront.net/media/538415/fac0fef5f39d998671c3f97c3f57a3fcbe3a93e8/original/MMCW_Logos-02.jpg?1578009670=" tabindex="0" type="button">
-<img alt="Other gallery photo" decoding="async" loading="lazy" src="https://ded7t1cra1lh5.cloudfront.net/media/538415/fac0fef5f39d998671c3f97c3f57a3fcbe3a93e8/original/MMCW_Logos-02.jpg?1578009670="/>
-</button>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Other" data-src="images/50_IMG-4737.jpg" href="#gallery-lightbox" role="button">
+<img alt="Other gallery photo" decoding="async" loading="lazy" src="images/50_IMG-4737.jpg"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Other" data-src="images/51_IMG-4837.PNG" href="#gallery-lightbox" role="button">
+<img alt="Other gallery photo" decoding="async" loading="lazy" src="images/51_IMG-4837.PNG"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Other" data-src="images/52_IMG-3938.PNG" href="#gallery-lightbox" role="button">
+<img alt="Other gallery photo" decoding="async" loading="lazy" src="images/52_IMG-3938.PNG"/>
+</a>
+<a aria-label="Open gallery image" class="gallery-item" data-category="Other" data-src="images/53_MMCW_Logos-02.jpg" href="#gallery-lightbox" role="button">
+<img alt="Other gallery photo" decoding="async" loading="lazy" src="images/53_MMCW_Logos-02.jpg"/>
+</a>
 </section>
 </main>
 <div aria-hidden="true" aria-label="Expanded gallery image" aria-modal="true" class="lightbox" id="gallery-lightbox" role="dialog">
-<button aria-label="Close image" class="lightbox-close" tabindex="0" type="button">×</button>
-<button aria-label="Previous image" class="lightbox-nav lightbox-prev" tabindex="0" type="button">‹</button>
-<img alt="Expanded gallery photo" draggable="false" src="">
-<button aria-label="Next image" class="lightbox-nav lightbox-next" tabindex="0" type="button">›</button>
+<a aria-label="Close image" class="lightbox-close" href="#" role="button">×</a>
+<a aria-label="Previous image" class="lightbox-nav lightbox-prev" href="#" role="button">‹</a>
+<img alt="Expanded gallery photo" draggable="false" src=""/>
+<a aria-label="Next image" class="lightbox-nav lightbox-next" href="#" role="button">›</a>
 <div aria-live="polite" class="lightbox-counter"></div>
-</img></div>
+</div>
 <script>
 const filters=[...document.querySelectorAll('.gallery-filter')];
 const items=[...document.querySelectorAll('.gallery-item')];
@@ -638,7 +633,7 @@ galleryTranslateButton.addEventListener('click', function (event) {
 }());
 
 (function trapLightboxTabFocus() {
-  const focusableSelector = 'button:not([disabled]), a[href], select:not([disabled]), input:not([disabled]):not([type="hidden"]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  const focusableSelector = 'a[href], select:not([disabled]), input:not([disabled]):not([type="hidden"]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
   document.addEventListener('keydown', function (event) {
     if (event.key !== 'Tab' || !lightbox.classList.contains('is-open')) return;
     const focusables = [...lightbox.querySelectorAll(focusableSelector)].filter(function (element) {
