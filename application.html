@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chicle&display=swap" rel="stylesheet">
   <style>
-:root { --navy:#17365f; --navy-dark:#102a4c; --red:#ef2b2d; --white:#fff; --light:#f4f7fb; --text:#17263a; }
+:root { --navy:#17365f; --navy-dark:#102a4c; --red:#ef2b2d; --white:#fff; --light:#f4f7fb; --text:#17263a; --focus:#ffd76a; }
     * { box-sizing:border-box; }
     body { margin:0; min-width:320px; background:var(--light); color:var(--text); font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
     .topbar { background:var(--navy-dark); color:#fff; padding:12px 20px; text-align:center; font-weight:700; }
@@ -29,7 +29,11 @@
     input, select, textarea { width:100%; border:1px solid #c8d2df; border-radius:10px; padding:13px 14px; font:inherit; color:var(--text); background:#fff; }
     input, select { height:50px; }
     input:focus, select:focus, textarea:focus { outline:3px solid rgba(23,54,95,.16); border-color:var(--navy); }
-    :where(a[href], button, input:not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])):focus-visible { outline:3px solid #ffd76a; outline-offset:3px; }
+    :where(a[href], button, input:not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])):focus,
+    :where(a[href], button, input:not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])):focus-visible {
+      outline:3px solid var(--focus);
+      outline-offset:3px;
+    }
     form.show-errors [required].field-invalid,
     form.show-errors [required].field-invalid:focus {
       border: 2px solid rgba(239,43,45,.88) !important;
@@ -45,6 +49,7 @@
     .country-code { text-align:center; }
     @media (max-width:380px) { .phone-row { grid-template-columns:70px minmax(0,1fr); } }
     .resume-box { border:2px dashed #aebdce; border-radius:14px; padding:18px; background:#f9fbfd; }
+    .resume-box:focus-within { outline:3px solid var(--focus); outline-offset:3px; }
     .resume-option { display:flex; align-items:flex-start; gap:10px; margin:0; color:var(--navy); cursor:pointer; }
     .resume-option input { width:20px; height:20px; margin:2px 0 0; flex:0 0 auto; }
     .resume-box small { display:block; margin:8px 0 0 30px; color:#536579; }
@@ -60,7 +65,7 @@
     .topbar { padding-left: max(14px, env(safe-area-inset-left)); padding-right: max(14px, env(safe-area-inset-right)); }
     .page { width: min(calc(100% - 28px), 820px); margin-top: clamp(18px, 5vw, 34px); margin-bottom: max(28px, env(safe-area-inset-bottom)); }
     .card, .hero, form, .grid, .grid > div { min-width: 0; }
-    input, select, textarea, button { font-size: 16px; }
+    input, select, textarea { font-size: 16px; }
     select { appearance: auto; }
     .back, .submit { min-height: 52px; touch-action: manipulation; }
     input[type="file"] { height: auto; min-height: 50px; padding: 10px; }
@@ -125,12 +130,17 @@
     .translate-action {
       min-height:48px;
       padding:11px 18px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       border:0;
       border-radius:10px;
       background:var(--navy);
       color:#fff;
       font:inherit;
       font-weight:900;
+      text-align:center;
+      text-decoration:none;
       cursor:pointer;
     }
     .translate-action:hover { filter:brightness(.94); }
@@ -156,6 +166,15 @@
       white-space: nowrap;
       pointer-events: none;
     }
+
+    #google_translate_element,
+    #google_translate_element * {
+      pointer-events: none !important;
+    }
+    #google_translate_element :where(a, button, input, select, textarea, [tabindex]) {
+      visibility: hidden !important;
+    }
+
     .goog-tooltip,
     .goog-tooltip:hover,
     .goog-te-balloon-frame,
@@ -170,6 +189,22 @@
       box-shadow: none !important;
       border: 0 !important;
     }
+    body a[href]:focus,
+    body a[href]:focus-visible,
+    body button:focus,
+    body button:focus-visible,
+    body input:not([type="hidden"]):focus,
+    body input:not([type="hidden"]):focus-visible,
+    body select:focus,
+    body select:focus-visible,
+    body textarea:focus,
+    body textarea:focus-visible,
+    body [tabindex]:not([tabindex="-1"]):focus,
+    body [tabindex]:not([tabindex="-1"]):focus-visible,
+    body .resume-box:focus-within {
+      outline: 3px solid var(--focus) !important;
+      outline-offset: 3px !important;
+    }
 </style>
 </head>
 <body>
@@ -177,11 +212,11 @@
   <div class="topbar">Magic Mobile Car Wash — Employment Application</div>
   <div class="translate-panel" aria-label="Page navigation and translation controls">
     <div class="translate-left">
-      <a class="back" href="index.html">← Back to website</a>
+      <a class="back" href="index.html" tabindex="0">← Back to website</a>
     </div>
     <div class="translate-controls">
       <label for="application-language">Language</label>
-      <select id="application-language" aria-label="Choose a language">
+      <select id="application-language" aria-label="Choose a language" tabindex="0">
       <option value="en">English</option>
       <option value="ar">Arabic</option>
       <option value="zh-CN">Chinese (Simplified)</option>
@@ -200,7 +235,7 @@
       <option value="ur">Urdu</option>
       <option value="vi">Vietnamese</option>
       </select>
-      <button class="translate-action" id="application-translate-button" type="button">Translate</button>
+      <button class="translate-action" id="application-translate-button" type="button" tabindex="0">Translate</button>
     </div>
   </div>
   <main class="page">
@@ -211,19 +246,19 @@
       </div>
       <form id="application-form" enctype="multipart/form-data" autocomplete="on" novalidate>
         <div class="grid">
-          <div><label for="first-name">First name<span class="required" aria-hidden="true">*</span></label><input id="first-name" name="first_name" autocomplete="given-name" required></div>
-          <div><label for="last-name">Last name<span class="required" aria-hidden="true">*</span></label><input id="last-name" name="last_name" autocomplete="family-name" required></div>
-          <div><label for="email">Email<span class="required" aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" required></div>
-          <div><label for="phone">Phone<span class="required" aria-hidden="true">*</span></label><div class="phone-row"><input id="country-code" class="country-code" name="country_code" type="text" inputmode="numeric" autocomplete="off" value="+1" aria-label="Country code" maxlength="4"><input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(000) 000-0000" maxlength="14" required><input id="full-phone" name="full_phone" type="hidden"></div></div>
-          <div><label for="zip-code">ZIP Code<span class="required" aria-hidden="true">*</span></label><input id="zip-code" name="zip_code" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}( - [0-9]{4})?" maxlength="12" required></div>
-          <div><label for="schedule">Availability<span class="required" aria-hidden="true">*</span></label><select id="schedule" name="schedule" autocomplete="on" required><option value="">Select one</option><option value="full-time">Full time</option><option value="part-time">Part time</option><option value="either">Either</option></select></div>
-          <div class="full"><label for="experience">Work experience or message</label><textarea id="experience" name="experience" autocomplete="on" placeholder="Tell us about your experience and availability."></textarea></div>
+          <div><label for="first-name">First name<span class="required" aria-hidden="true">*</span></label><input id="first-name" tabindex="0" name="first_name" autocomplete="given-name" required></div>
+          <div><label for="last-name">Last name<span class="required" aria-hidden="true">*</span></label><input id="last-name" tabindex="0" name="last_name" autocomplete="family-name" required></div>
+          <div><label for="email">Email<span class="required" aria-hidden="true">*</span></label><input id="email" tabindex="0" name="email" type="email" autocomplete="email" required></div>
+          <div><label for="phone">Phone<span class="required" aria-hidden="true">*</span></label><div class="phone-row"><input id="country-code" tabindex="0" class="country-code" name="country_code" type="text" inputmode="numeric" autocomplete="off" value="+1" aria-label="Country code" maxlength="4"><input id="phone" tabindex="0" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(000) 000-0000" maxlength="14" required><input id="full-phone" name="full_phone" type="hidden"></div></div>
+          <div><label for="zip-code">ZIP Code<span class="required" aria-hidden="true">*</span></label><input id="zip-code" tabindex="0" name="zip_code" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}( - [0-9]{4})?" maxlength="12" required></div>
+          <div><label for="schedule">Availability<span class="required" aria-hidden="true">*</span></label><select id="schedule" tabindex="0" name="schedule" autocomplete="on" required><option value="">Select one</option><option value="full-time">Full time</option><option value="part-time">Part time</option><option value="either">Either</option></select></div>
+          <div class="full"><label for="experience">Work experience or message</label><textarea id="experience" tabindex="0" name="experience" autocomplete="on" placeholder="Tell us about your experience and availability."></textarea></div>
           <div class="full resume-box">
-            <label class="resume-option" for="has-resume"><input id="has-resume" name="has_resume" type="checkbox"> <span>I have a résumé to attach</span></label>
+            <label class="resume-option" for="has-resume"><input id="has-resume" tabindex="0" name="has_resume" type="checkbox"> <span>I have a résumé to attach</span></label>
             <small>If you have a résumé, attach it in your email before sending your application.</small>
           </div>
         </div>
-        <button class="submit" type="submit">Submit by Email</button>
+        <button class="submit" id="application-submit" type="button" tabindex="0">Submit by Email</button>
       </form>
     </section>
   </main>
@@ -234,6 +269,7 @@ const form = document.getElementById('application-form');
     const phone = document.getElementById('phone');
     const fullPhone = document.getElementById('full-phone');
     const zipCode = document.getElementById('zip-code');
+    const applicationSubmit = document.getElementById('application-submit');
     const requiredFields = Array.from(form.querySelectorAll('[required]'));
 
     function digitsOnly(value, maxLength) {
@@ -402,7 +438,26 @@ const form = document.getElementById('application-form');
         field.removeAttribute('aria-invalid');
       });
 
-      window.location.href = `mailto:kiaradwilliams04@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(finalBody)}`;
+      const mailtoUrl = `mailto:kiaradwilliams04@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(finalBody)}`;
+      const returnUrl = 'index.html';
+
+      // Open the visitor's email app without replacing this page with the mailto URL.
+      const mailFrame = document.createElement('iframe');
+      mailFrame.setAttribute('aria-hidden', 'true');
+      mailFrame.tabIndex = -1;
+      mailFrame.style.display = 'none';
+      document.body.appendChild(mailFrame);
+      mailFrame.src = mailtoUrl;
+
+      // Then continue back to the regular website page.
+      window.setTimeout(function () {
+        window.location.href = returnUrl;
+      }, 700);
+    });
+
+    applicationSubmit.addEventListener('click', function (event) {
+      event.preventDefault();
+      form.requestSubmit();
     });
 
 const LANGUAGE_STORAGE_KEY = 'magicMobileLanguage';
@@ -492,7 +547,8 @@ const LANGUAGE_STORAGE_KEY = 'magicMobileLanguage';
 
     applicationLanguage.value = localStorage.getItem(LANGUAGE_STORAGE_KEY) || getTranslateCookieLanguage();
 
-    applicationTranslateButton.addEventListener('click', function () {
+    applicationTranslateButton.addEventListener('click', function (event) {
+      event.preventDefault();
       const language = applicationLanguage.value;
 
       if (language === 'en') {
@@ -552,6 +608,69 @@ const LANGUAGE_STORAGE_KEY = 'magicMobileLanguage';
           target.click();
         }
       });
+    }());
+
+
+    (function ensureReliableKeyboardNavigation() {
+      const focusableSelector = [
+        'a[href]',
+        'button:not([disabled])',
+        'input:not([disabled]):not([type="hidden"])',
+        'select:not([disabled])',
+        'textarea:not([disabled])',
+        '[tabindex]:not([tabindex="-1"])'
+      ].join(',');
+
+      function isVisible(element) {
+        if (!(element instanceof HTMLElement)) return false;
+        const style = window.getComputedStyle(element);
+        return style.display !== 'none'
+          && style.visibility !== 'hidden'
+          && !element.hidden
+          && element.getClientRects().length > 0;
+      }
+
+      function focusableElements() {
+        return [...document.querySelectorAll(focusableSelector)]
+          .filter(isVisible)
+          .filter(function (element) {
+            return !element.closest('#google_translate_element, [aria-hidden="true"]');
+          })
+          .filter(function (element, index, elements) {
+            return elements.indexOf(element) === index;
+          });
+      }
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key !== 'Tab' || event.altKey || event.ctrlKey || event.metaKey) return;
+
+        const elements = focusableElements();
+        if (!elements.length) return;
+
+        const activeIndex = elements.indexOf(document.activeElement);
+        const nextIndex = event.shiftKey
+          ? (activeIndex <= 0 ? elements.length - 1 : activeIndex - 1)
+          : (activeIndex < 0 || activeIndex === elements.length - 1 ? 0 : activeIndex + 1);
+
+        event.preventDefault();
+        elements[nextIndex].focus();
+      }, true);
+
+      document.addEventListener('keydown', function (event) {
+        if ((event.key !== 'Enter' && event.key !== ' ') ||
+            event.altKey || event.ctrlKey || event.metaKey) return;
+
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+
+        if (target.matches('button, a[role="button"], input[type="checkbox"], input[type="radio"]')) {
+          if (event.key === ' ') event.preventDefault();
+          if (target.matches('a[role="button"], input[type="checkbox"], input[type="radio"]')) {
+            event.preventDefault();
+            target.click();
+          }
+        }
+      }, true);
     }());
 
     const removeGoogleFeedbackPopup = function () {
